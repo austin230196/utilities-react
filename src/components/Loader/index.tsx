@@ -5,20 +5,23 @@ import styled from "styled-components";
 
 
 import {useEffectOnMount} from "../../hooks";
+import {Backdrop} from "../";
 
 
 interface ILoader {
-    value: number;
+    hasBackdrop?: boolean
+    width?: number
+    height?: number
 }
 
 
 
 const LoaderIndicator = styled.div`
-    border: 4px solid #fff; /* Light grey */
+    border: 4px solid ${(props: any) => props.theme.background}; /* Light grey */
     border-top: 4px solid ${(props: any) => props.theme.primary}; /* Blue */
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: ${(props: any) => props.width ? props.width +'px' : '40px'};
+    height: ${(props: any) => props.height ? props.height +'px' : '40px'};
     animation: spin 2s linear infinite;
     margin-top: 20px;
   
@@ -32,16 +35,22 @@ const LoaderIndicator = styled.div`
 
 
 
-const Loader: React.FC<ILoader> = ({value}): ReactElement => {
+
+const Loader: React.FC<ILoader> = ({hasBackdrop=false, width, height}): ReactElement => {
     useEffectOnMount(() => {
         console.log("Loader is mounted");
         return () => console.log("Loader is unmounted");
-    }, [value])
+    }, [])
 
 
     return (
-        <LoaderIndicator>
-        </LoaderIndicator>
+        hasBackdrop
+             ? 
+            (<Backdrop>
+                <LoaderIndicator width={width} height={height} />
+            </Backdrop>)
+            :
+            <LoaderIndicator width={width} height={height} />
     )
 }
 

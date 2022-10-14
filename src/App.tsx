@@ -4,15 +4,20 @@ import {Routes, Route, Link} from "react-router-dom"
 
 
 import { useEffectOnMount } from "./hooks";
+import {RequestCookies} from './components';
 
 
 
 const Upload = lazy(() => import("./pages/Upload"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Chat = lazy(() => import("./pages/Chat"));
+const Authenticate = lazy(() => import("./pages/Authenticate"));
+const Rooms = lazy(() => import("./pages/Rooms"));
+const Mail = lazy(() => import('./pages/Mail'));
+const Table = lazy(() => import('./pages/Table'));
 
 
-interface IApp {}
+type IApp = {};
 
 const AppContainer = styled.div<{}>`
   width: 100%;
@@ -33,7 +38,7 @@ const InviscibleLink = styled.div`
   padding: 15px;
   display: none;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 
 
 
@@ -59,11 +64,16 @@ const App: React.FC<IApp> = ({}): ReactElement => {
       <InviscibleLink>
         <Link to="#select">Go to Select</Link>
       </InviscibleLink>
+      <RequestCookies />
       <Suspense fallback={<div>Loading</div>}>
         <Routes>
-          <Route path="/" element={<Upload />} />
+          <Route path="/" element={<Authenticate />} />
+          <Route path="/upload" element={<Upload />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/rooms" element={<Rooms />} />
+          <Route path='/mail' element={<Mail />} />
+          <Route path='/table' element={<Table />} />
         </Routes>
       </Suspense>
     </AppContainer>

@@ -191,24 +191,23 @@ const options: IOption[] = [
 
 
 const Upload: React.FC<{}> = ({}): ReactElement => {
-    const percentage: {status: number} = {
-        status: 50
-    }
-    const p: any= new Proxy(percentage, {
-        set(target, key, value) {
-            if(key === "status" && key > "100"){
-                throw new Error("Value must be larger 100");
-                return;
-            }
-            console.log({target, key, value});
-            return value;
-        }
-    })
+    // const percentage: {status: number} = {
+    //     status: 50
+    // }
+    // const p: any= new Proxy(percentage, {
+    //     set(target, key, value) {
+    //         if(key === "status" && key > "100"){
+    //             throw new Error("Value must be larger 100");
+    //             return;
+    //         }
+    //         console.log({target, key, value});
+    //         return value;
+    //     }
+    // })
     const [url, setUrl] = useState<string>("");
     const [file, setFile] = useState<null | File>(null);
     const inputRef: Ref<null | HTMLElement> = useRef(null);
     const modalReady: Ref<boolean> = useRef<boolean>(false);
-    const percentageRef: Ref<number> = useRef<typeof p>(p.status);
 
 
     useEffectOnMount(() => {
@@ -295,7 +294,7 @@ const Upload: React.FC<{}> = ({}): ReactElement => {
                             <Button disabled={url.trim() === "" ? true : false}>Upload</Button>
                         </InputContainer>
                     </FormContainer>
-                    <Loader value={percentageRef.current as number} />
+                    <Loader />
                     <Select multiple options={options} />
                 </FormBody>
             </UploadForm>

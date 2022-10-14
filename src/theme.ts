@@ -8,6 +8,7 @@ type Theme = {
     textLight: string
     secondary: string
     backgroundLight: string
+    primaryDark: string
 }
 
 
@@ -19,5 +20,6 @@ export const theme: Theme = {
     textDark: "#313133",
     textLight: "#BEC1C2",
     secondary: "#ffffff",
-    backgroundLight: "#F9F9F9"
+    backgroundLight: "#F9F9F9",
+    primaryDark: 'rgb(22, 64, 147)'
 }

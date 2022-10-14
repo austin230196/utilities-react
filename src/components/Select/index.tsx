@@ -100,6 +100,8 @@ const Chosen = styled.div`
     & > span {
         font-size: 1.2rem;
         margin-left: 10px;
+        color: black;
+        transition: color 0.5s ease-out;
     }
 `;
 

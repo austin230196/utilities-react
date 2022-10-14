@@ -38,6 +38,9 @@
   }
 
 
+:root {
+  --spacing: 0.6px;
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
